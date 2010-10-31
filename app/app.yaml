@@ -22,7 +22,7 @@ builtins:
 - remote_api: on
 - appstats: on
 - datastore_admin: on
-#- admin_redirect: on
+- admin_redirect: on
 
 skip_files:
 - ^(.*/)?app\.yaml
