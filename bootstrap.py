@@ -1,3 +1,4 @@
+#!/usr/bin/env python2.5
 ##############################################################################
 #
 # Copyright (c) 2006 Zope Corporation and Contributors.
