@@ -1,5 +1,5 @@
-application: my-app
-version: 1
+application: mils-alumni
+version: development
 runtime: python
 api_version: 1
 
@@ -11,13 +11,27 @@ handlers:
   static_files: static/\1
   upload: static/(.*)
 
-- url: /remote_api
-  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
-  login: admin
-
 - url: /_ah/queue/deferred
   script: main.py
   login: admin
 
 - url: /.*
   script: main.py
+
+builtins:
+- remote_api: on
+- appstats: on
+- datastore_admin: on
+#- admin_redirect: on
+
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?.*\.bak$
