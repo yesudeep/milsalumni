@@ -20,6 +20,7 @@ private_rsa_key.pem
 .installed.cfg
 .localized
 app/lib/dist/
+app/lib/dist.zip
 bin/appcfg
 bin/buildout
 bin/bulkload_client
