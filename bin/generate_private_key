@@ -1,0 +1,7 @@
+#!/bin/sh
+
+PWD=`pwd`
+
+# http://www.openssl.org/docs/HOWTO/keys.txt
+openssl genrsa -out ${PWD}/private_rsa_key.pem 2048
+
