@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>{{ APPLICATION_NAME }} - {% block title %}{% endblock %}</title>
+		{% block tag_stylesheets %}
+		<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="{{ CSS_URL }}styles.css" />
+		{% endblock %}
+	</head>
+	<body>
+		{% block tag_body %}{% endblock %}
+		{% block tag_base_scripts %}
+		<script type="text/javascript" charset="utf-8" src="{{ JQUERY_URL }}"></script>
+		{% endblock %}
+		{% block tag_scripts %}{% endblock %}
+		{% block tag_analytics_scripts %}{{ ANALYTICS_CODE }}{% endblock %}
+	</body>
+</html>
