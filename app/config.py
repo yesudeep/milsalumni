@@ -28,7 +28,8 @@ else:
 	FONTS_CODE = '''
 	<link href='http://fonts.googleapis.com/css?family=Philosopher|Cuprum|Droid+Serif:regular,italic,bold,bolditalic&subset=latin' rel='stylesheet' type='text/css'>
 	'''
-        HTML5RESET_CSS_URL = 'http://html5resetcss.googlecode.com/files/html5reset-%s.css' % HTML5RESET_VERSION
+        HTML5RESET_CSS_URL = CSS_URL + 'html5reset-%s.css' % HTML5RESET_VERSION
+        #HTML5RESET_CSS_URL = 'http://html5resetcss.googlecode.com/files/html5reset-%s.css' % HTML5RESET_VERSION
 
 meta_config = dict(
 	APPLICATION_TITLE='MILS Alumni',
