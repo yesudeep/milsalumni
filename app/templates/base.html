@@ -7,8 +7,10 @@
 		{% autoescape false %}{{ FONTS_CODE }}{% endautoescape %}
 		{% endblock %}
 		{% block tag_stylesheets %}
+                <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="{{ HTML5RESET_CSS_URL }}" />
 		<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="{{ CSS_URL }}styles.css" />
 		{% endblock %}
+                <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
 	</head>
 	<body>
 		{% block tag_body %}{% endblock %}

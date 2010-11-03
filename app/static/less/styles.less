@@ -1,4 +1,566 @@
-body {
-   font-family: Georgia;
+/**
+ * Library colors and images.
+ */
+@color-awesome-white: #fff;
+@color-awesome-black: #222;
+@color-awesome-black-dark: #111;
+@color-awesome-blue: #2daebf;
+@color-awesome-blue-dark: #007d9a;
+@color-awesome-red: #e33100;
+@color-awesome-red-dark: #872300;
+@color-awesome-magenta: #a9014b;
+@color-awesome-magenta-dark: #630030;
+@color-awesome-orange: #ff5c00;
+@color-awesome-orange-dark: #d45500;
+@color-awesome-yellow: #ffb515;
+@color-awesome-yellow-dark: #fc9200;
+@color-awesome-green: #91bd09;
+@color-awesome-green-dark: #749a02;
+@color-awesome-gray: #c3c3c3;
+@color-awesome-gray-dark: #6b6b6b;
+@color-awesome-silver: #efefef;
+@color-awesome-green-1: #719600;
+@color-awesome-green-1-dark: #5d7b00;
+@color-awesome-green-2: #a7de00;
+@color-awesome-green-2-dark: #93c300;
+@color-awesome-leaf-green: #00a064;
+@color-awesome-leaf-green-dark: #00893d;
+
+@image-bg-awesome-button: url(../i/bg-awesome-button.png);
+
+/**
+ * Mixin to get border-radius working across supported browsers;
+ */
+.border-radius(@radius) {
+    -moz-border-radius: @radius;     // FF1+
+    -webkit-border-radius: @radius;  // Saf3+, Chrome
+    border-radius: @radius;          // Opera 10.5, IE 9
 }
 
+/**
+ * Border-radius for various corners.
+ */
+.border-radius-top-right(@radius) {
+    -moz-border-radius-topright: @radius;
+    -webkit-border-top-right-radius: @radius;
+    border-top-right-radius: @radius;
+}
+.border-radius-top-left(@radius) {
+    -moz-border-radius-topleft: @radius;
+    -webkit-border-top-left-radius: @radius;
+    border-top-left-radius: @radius;
+}
+.border-radius-bottom-right(@radius) {
+    -moz-border-radius-bottomright: @radius;
+    -webkit-border-bottom-right-radius: @radius;
+    border-bottom-right-radius: @radius;
+}
+.border-radius-bottom-left(@radius) {
+    -moz-border-radius-bottomleft: @radius;
+    -webkit-border-bottom-left-radius: @radius;
+    border-bottom-left-radius: @radius;
+}
+
+/**
+ * Convenience border-radius mixins for sides.
+ */
+.border-radius-bottom(@radius){
+    .border-radius-bottom-left(@radius);
+    .border-radius-bottom-right(@radius);
+}
+.border-radius-top(@radius){
+    .border-radius-top-left(@radius);
+    .border-radius-top-right(@radius);
+}
+.border-radius-left(@radius){
+    .border-radius-top-left(@radius);
+    .border-radius-bottom-left(@radius);
+}
+.border-radius-right(@radius){
+    .border-radius-top-right(@radius);
+    .border-radius-bottom-right(@radius);
+}
+
+/**
+ * Mixin to get box-shadow working across supported browsers.
+ */
+.box-shadow(@shadow) {
+    -moz-box-shadow: @shadow;    // FF3.5+
+    -webkit-box-shadow: @shadow; // Saf3.0+, Chrome
+    box-shadow: @shadow;         // Opera 10.5, IE 9.0
+}
+
+/**
+ * Mixin to get the inline-block display style working
+ * correctly in different browsers.
+ */
+.display-inline-block() {
+    display: -moz-inline-stack;  // FF2. Placed first.
+    display: inline-block;
+    /* <IE8 */
+    zoom: 1;
+    *display: inline;
+}
+
+/**
+ * Mixin to get min-height to work.
+ */
+.min-height(@value) {
+    min-height: @value;
+    _height: @value;    // IE6 underscore hack.
+}
+
+/**
+ * Column count.
+ */
+.column-count(@value) {
+    -moz-column-count: @value;
+    -webkit-column-count: @value;
+    column-count: @value;
+}
+
+.column-width(@value) {
+    -moz-column-width: @value;
+    -webkit-column-width: @value;
+    column-width: @value;
+}
+
+.column-gap(@value) {
+    -moz-column-gap: @value;
+    -webkit-column-gap: @value;
+    column-gap: @value;
+}
+
+.column-rule(@value) {
+    -moz-column-rule: @value;
+    -webkit-column-rule: @value;
+    column-rule: @value;
+}
+
+/**
+ * Mixin to get opacity working.
+ */
+.opacity(@value) {
+    // Causes syntax error.
+    //filter: alpha(opacity=@value * 100);
+    opacity: @value;
+    -moz-opacity: @value;
+    -html-opacity: @value;
+}
+
+
+/**
+ * Mixin to render ZURB awesome-style buttons.
+ */
+.awesome-button() {
+    .display-inline-block;
+    padding: 5px 10px 6px;
+    position: relative;
+    cursor: pointer;
+
+    font-weight: bold;
+    line-height: 1;
+    text-decoration: none;
+
+    background: @color-awesome-black @image-bg-awesome-button repeat-x;
+    color: @color-awesome-white;
+    text-shadow: 0 -1px 1px @color-awesome-black;
+    border-bottom: 1px solid @color-awesome-black;
+}
+
+.small-awesome-button() {
+    font-size: 11px;
+}
+.medium-awesome-button() {
+    font-size: 13px;
+}
+.large-awesome-button() {
+    font-size: 14px;
+}
+
+
+/**
+ * Colors.
+ */
+@color-black: #000;
+@color-white: #fff;
+@color-sticky-note: #ffff9e;
+@color-highlight: #ffc;
+@color-wabbit-red: #c33234;
+@color-beige: #f5f5dc;
+@color-bg-body: @color-white; //@color-beige;
+@color-body-text: #555;
+@color-blockquote: @color-black;
+@color-intro: @color-black;
+@color-heading: @color-black;
+@color-heading-text-shadow: @color-white;
+@color-heading-bottom-border: #ccc;
+@color-title-text-shadow: #333;
+@color-bold-text: @color-black;
+@color-emphasized-text: @color-black;
+@color-symbol: @color-black;
+@color-list-bullet: @color-black;
+@color-list-text: @color-body-text;
+@color-bg-comment-box: #f2f2f2;
+@color-link: @color-wabbit-red;
+@color-pull-quote: @color-bg-body * 0.8;
+
+/**
+ * Typefaces.
+ */
+@font-chunky-heading: ChunkFive,Impact,"Arial Black",serif;
+@font-serif: Calluna,Georgia,serif;
+@font-serif-alt: "Droid Serif", @font-serif;
+@font-slab-serif: "American Typewriter", Rockwell, Optima, @font-serif;
+@font-sans-serif: "HelveticaNeue-Medium",Helvetica,FreeSans,Arial,sans-serif;
+@font-sans-serif-alt: "Junction","HelveticaNeue-Light", @font-sans-serif;
+
+// Symbols and special characters.
+@font-ampersand: Baskerville,Palatino,"Hoefler Text","Goudy Bookletter 1911",Constantia,"Palatino Linotype","Book Antiqua","URW Palladio L",Gentium,serif;
+@font-dash: "Lucida Grande Regular",symbol;
+@font-grid-letter: "OldConstructedCaps",Georgia,serif;
+@font-section-delimiter: "Arial Unicode MS", FreeSerif, "DejaVu Sans", sans-serif;
+@font-pull-quote: Georgia,serif;
+
+
+@margin-below-paragraph: 1.5em;
+@border-divider: 1px dotted #ccc;
+
+/**
+ * Highlights and shadows.
+ */
+.selection() {
+	background: @color-sticky-note;
+}
+::selection {
+	.selection;
+}
+::-moz-selection {
+	.selection;
+}
+.highlight() {
+	background: @color-highlight;
+}
+.heading-text-shadow() {
+//	text-shadow: 0 2px 2px @color-heading-text-shadow;
+	text-shadow: none;
+}
+.title-text-shadow() {
+	text-shadow: 0 1px 1px @color-title-text-shadow;
+}
+
+
+// Typography, colors, and look.
+body {
+    background-color: @color-bg-body;
+    font: 1em/1.5em @font-serif-alt;
+    color: @color-body-text;
+}
+ul, ol {
+	font-size: 0.9em;
+	color: #222;
+	margin-bottom: @margin-below-paragraph;
+}
+li {
+	margin-bottom: 0.6em;
+}
+p, blockquote {
+    margin-bottom: @margin-below-paragraph;
+    strong {
+    	color: @color-bold-text;
+    	font-weight: bold;
+    }
+    em {
+		.highlight;
+    	color: @color-emphasized-text;
+    	font-style: italic;
+    }
+}
+p + p {
+	text-indent: 2em;
+}
+p.intro + p {
+	text-indent: 0;
+}
+article section p:first-child {
+    margin-top: 2em;
+	font-family: @font-slab-serif;
+	font-size: 1.2em;
+	color: @color-intro;
+
+	.grid-letter {
+		font-family: @font-grid-letter;
+		font-size: 3.4em;
+		color: @color-wabbit-red;
+		display:block;
+		float: left;
+		margin-top: 0.4em;
+	}
+}
+
+// Symbols and section delimiters.
+.symbol() {
+	font-family: @font-section-delimiter;
+	color: @color-symbol;
+}
+.section-delimiter-symbol() {
+	.symbol;
+
+	margin: 1em auto;
+	font-size: 2em;
+	text-align: center;
+	content: '§';
+	display: block;
+}
+.dateline:before, .dateline:after {
+	font-family: @font-dash;
+	font-style: normal;
+	content: '❧';
+	font-size: 1.4em;
+	margin-right: 0.2em;
+	margin-left: 0.2em;
+}
+article:after {
+	.section-delimiter-symbol;
+}
+footer:before {
+	.section-delimiter-symbol;
+}
+div.fin.symbol {
+	.symbol();
+
+	font-size: 2em;
+	text-align: left;
+	color: @color-wabbit-red;
+}
+div.section-delimiter {
+	font: small-caps 100% @font-serif;
+	text-align: center;
+	width: 325px;
+	margin: 1em auto;
+	border-top: @border-divider;
+}
+span.ampersand {
+	font-family: @font-ampersand;
+	font-style: italic;
+}
+
+
+
+blockquote {
+	font-family: @font-slab-serif;
+
+	margin: auto 0 @margin-below-paragraph 4em;
+    color: @color-blockquote;
+}
+
+blockquote:before {
+	color: @color-pull-quote;
+	content: "“";
+
+	font-family: @font-pull-quote;
+	font-size: 10em;
+
+	margin-top: 0.25em;
+	margin-left: -0.4em;
+
+	float: left;
+	position: absolute;
+	z-index: -10;
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+	.heading-text-shadow;
+	font: normal 100% @font-serif;
+    color: @color-heading;
+    margin-bottom: .2em;
+}
+
+h1.title {
+	.title-text-shadow;
+	font: bold 4.4em/.9em @font-chunky-heading;
+	//margin-bottom: .4em;
+	color: @color-wabbit-red;
+
+	strong {
+		.heading-text-shadow;
+		display: block;
+		color: black;
+		font-family: @font-slab-serif;
+		font-weight: bold;
+		letter-spacing: -.03em;
+		font-size: .35em;
+		margin-top: -.2em;
+	}
+}
+
+
+h1 {
+	font: 2.4em/1.2em @font-slab-serif;  //218%;
+
+	strong {
+		font: normal 0.9em @font-chunky-heading;
+
+		margin-bottom: -0.3em;
+		display:  block;
+	}
+}
+
+h2 {
+    font-size: 1.6em; //164%;
+}
+
+h3 {
+    font-size: 1.4em; //145%;
+}
+
+h4 {
+	font: bold 1.2em @font-sans-serif; // 118%;
+}
+
+
+/**
+ * Links.
+ */
+a:link, a:visited {
+	color: @color-link;
+	text-decoration: none;
+}
+a:hover, a:visited:hover {
+	text-decoration: underline;
+}
+
+p, blockquote, li {
+	a:link, a:visited {
+		border-bottom: 1px dotted @color-link;
+	}
+	a:hover, a:visited:hover {
+		border-bottom: 1px dashed @color-link;
+		text-decoration: none;
+	}
+}
+
+
+.authorline {
+	margin-top: -0.5em;
+}
+.dateline {
+	margin: 2em auto;
+	text-align: center;
+}
+.authorline, .dateline {
+	font-family: @font-serif;
+	font-variant: small-caps;
+	font-size: 1.1em;
+	.place {
+		font-size: 0.8em;
+		font-style: italic;
+		font-variant: normal;
+	}
+}
+
+div.note {
+	margin: 1em auto;
+	width: 325px;
+	color: @color-bold-text;
+	text-shadow: 1px 1px 1px #dedede;
+	text-align: center;
+}
+
+div.copyright {
+	text-align: center;
+	font-variant: small-caps;
+}
+
+
+// Layout from lessframework.com
+/*
+	Default 5-column, 768 px layout for iPads, netbooks, and IE
+	(All other layouts inherit styles from this layout)
+	-----------------------------------------------------------
+	1      2      3      4      5
+	120px  264px  408px  552px  696px   (24px gutters)
+*/
+
+body {
+	padding: 60px 36px 0;
+	width: 696px;
+}
+
+#example {
+	height: 600px;
+	background: rgb(60,97,158);
+}
+
+
+
+/*
+	2-column, 320 px layout for smartphones
+	---------------------------------------
+	1      2
+	120px  264px   (24px gutters)
+*/
+
+@media only screen and (max-width: 767px) {
+
+	body {
+		padding: 48px 28px 0;
+		width: 264px;
+	}
+
+}
+
+
+
+/*
+	8-column, 1224 px layout for desktops and laptops
+	------------------------------------------------------------------------
+	1      2      3      4      5      6      7      8
+	120px  264px  408px  552px  696px  840px  984px  1128px   (24px gutters)
+*/
+
+@media only screen and (min-width: 1224px) {
+
+	body {
+		padding: 72px 48px 0;
+		width: 1128px;
+	}
+
+}
+
+
+
+/*
+	12-column, 1824 px layout for gigantic screens   (24px gutters)
+	---------------------------------------------------------------------------------------
+	1      2      3      4      5      6      7      8       9       10      11      12
+	120px  264px  408px  552px  696px  840px  984px  1128px  1272px  1416px  1560px  1704px
+*/
+
+@media only screen and (min-width: 1824px) {
+
+	body {
+		padding: 96px 60px;
+		width: 1704px;
+	}
+
+}
+
+
+
+/*
+	Overrides for iPhone 4 and other high device-pixel-ratio devices
+	----------------------------------------------------------------
+*/
+
+@media
+	only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (min-device-pixel-ratio: 1.5) {
+
+	#example {
+		background: rgb(255,158,97);
+	}
+
+}
