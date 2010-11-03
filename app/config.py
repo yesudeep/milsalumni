@@ -14,9 +14,13 @@ JS_URL = '/js/'
 if DEV_APPSERVER:
 	JQUERY_URL = JS_URL + 'vendor/jquery-1.4.3.min.js'
 	ANALYTICS_CODE = ''
+	FONTS_CODE = ''
 else:
 	JQUERY_URL = 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js'
 	ANALYTICS_CODE = """<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount', '%(GOOGLE_ANALYTICS_ID)s']);_gaq.push(['_trackPageview']);(function(){var doc=document,ga=doc.createElement('script');ga.src=('https:'==doc.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';ga.setAttribute('async', 'true');doc.documentElement.firstChild.appendChild(ga);})();</script>""" % dict(GOOGLE_ANALYTICS_ID=GOOGLE_ANALYTICS_ID)
+	FONTS_CODE = '''
+	<link href='http://fonts.googleapis.com/css?family=Philosopher|Cuprum|Droid+Serif:regular,italic,bold,bolditalic&subset=latin' rel='stylesheet' type='text/css'>
+	'''
 
 meta_config = dict(
 	APPLICATION_TITLE='MILS Alumni',
@@ -27,6 +31,7 @@ meta_config = dict(
 	CSS_MINIFICATION_SUFFIX='.min.css',
 	JQUERY_URL=JQUERY_URL,
 	ANALYTICS_CODE=ANALYTICS_CODE,
+	FONTS_CODE=FONTS_CODE,
 )
 
 config = {}
@@ -34,6 +39,7 @@ config = {}
 config['tipfy'] = {
 	'auth_store_class': 'tipfy.auth.MultiAuthStore',
 	'enable_debugger': DEBUG,
+        'session_store_class': 'tipfy.sessions.SecureCookieStore',
         }
 config['tipfy.sessions'] = {
         'secret_key': secret_key,

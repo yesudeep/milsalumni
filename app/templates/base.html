@@ -3,6 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{{ APPLICATION_TITLE }}&mdash;{% block title %}{% endblock %}</title>
+		{% block tag_fonts %}
+		{% autoescape false %}{{ FONTS_CODE }}{% endautoescape %}
+		{% endblock %}
 		{% block tag_stylesheets %}
 		<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="{{ CSS_URL }}styles.css" />
 		{% endblock %}
@@ -14,9 +17,7 @@
 		{% endblock %}
 		{% block tag_scripts %}{% endblock %}
 		{% block tag_analytics_scripts %}
-		{% autoescape false %}
-		{{ ANALYTICS_CODE }}
-		{% endautoescape %}
+		{% autoescape false %}{{ ANALYTICS_CODE }}{% endautoescape %}
 		{% endblock %}
 	</body>
 </html>
